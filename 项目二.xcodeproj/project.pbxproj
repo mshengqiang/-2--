@@ -10,6 +10,12 @@
 		27B5831545E7237EA405AA8A /* libPods-项目二.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC975BC02E00BB79DAA8665 /* libPods-项目二.a */; };
 		9212E3F71C9BDC8400EBE3A0 /* RetrievePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9212E3F61C9BDC8400EBE3A0 /* RetrievePasswordViewController.m */; };
 		924B29CE1CA51F4D00FA5564 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924B29CD1CA51F4D00FA5564 /* HomeViewController.m */; };
+		92977C701CA9231800915A1A /* SquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92977C6F1CA9231800915A1A /* SquareViewController.m */; };
+		92977C761CA92C2100915A1A /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92977C751CA92C2100915A1A /* PersonViewController.m */; };
+		92977C791CA92E0600915A1A /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92977C781CA92E0600915A1A /* HomePageViewController.m */; };
+		92977C841CA9367500915A1A /* CollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92977C831CA9367500915A1A /* CollectViewController.m */; };
+		92977C871CA9368F00915A1A /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92977C861CA9368F00915A1A /* PublishViewController.m */; };
+		92977C8A1CA936A500915A1A /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92977C891CA936A500915A1A /* SupportViewController.m */; };
 		92F4606E1C9AA329002CA9E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F4606D1C9AA329002CA9E7 /* main.m */; };
 		92F460711C9AA329002CA9E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F460701C9AA329002CA9E7 /* AppDelegate.m */; };
 		92F460741C9AA329002CA9E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F460731C9AA329002CA9E7 /* ViewController.m */; };
@@ -46,8 +52,20 @@
 		157F5D7CB4AA3C18940A99AD /* Pods-项目二.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-项目二.debug.xcconfig"; path = "Pods/Target Support Files/Pods-项目二/Pods-项目二.debug.xcconfig"; sourceTree = "<group>"; };
 		9212E3F51C9BDC8400EBE3A0 /* RetrievePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrievePasswordViewController.h; sourceTree = "<group>"; };
 		9212E3F61C9BDC8400EBE3A0 /* RetrievePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetrievePasswordViewController.m; sourceTree = "<group>"; };
-		924B29CC1CA51F4D00FA5564 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		924B29CD1CA51F4D00FA5564 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		924B29CC1CA51F4D00FA5564 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = ../HomeViewController.h; sourceTree = "<group>"; };
+		924B29CD1CA51F4D00FA5564 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = ../HomeViewController.m; sourceTree = "<group>"; };
+		92977C6E1CA9231800915A1A /* SquareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SquareViewController.h; path = ../SquareViewController.h; sourceTree = "<group>"; };
+		92977C6F1CA9231800915A1A /* SquareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SquareViewController.m; path = ../SquareViewController.m; sourceTree = "<group>"; };
+		92977C741CA92C2100915A1A /* PersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonViewController.h; path = ../PersonViewController.h; sourceTree = "<group>"; };
+		92977C751CA92C2100915A1A /* PersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonViewController.m; path = ../PersonViewController.m; sourceTree = "<group>"; };
+		92977C771CA92E0600915A1A /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageViewController.h; path = ../HomePageViewController.h; sourceTree = "<group>"; };
+		92977C781CA92E0600915A1A /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageViewController.m; path = ../HomePageViewController.m; sourceTree = "<group>"; };
+		92977C821CA9367500915A1A /* CollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectViewController.h; sourceTree = "<group>"; };
+		92977C831CA9367500915A1A /* CollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectViewController.m; sourceTree = "<group>"; };
+		92977C851CA9368F00915A1A /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
+		92977C861CA9368F00915A1A /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
+		92977C881CA936A500915A1A /* SupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportViewController.h; sourceTree = "<group>"; };
+		92977C891CA936A500915A1A /* SupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportViewController.m; sourceTree = "<group>"; };
 		92F460691C9AA329002CA9E7 /* 项目二.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "项目二.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F4606D1C9AA329002CA9E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		92F4606F1C9AA329002CA9E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -121,10 +139,46 @@
 		924B29CB1CA51F3500FA5564 /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
-				924B29CC1CA51F4D00FA5564 /* HomeViewController.h */,
-				924B29CD1CA51F4D00FA5564 /* HomeViewController.m */,
+				92977C801CA9358A00915A1A /* 广场 */,
+				92977C811CA9358A00915A1A /* 主页2 */,
+				92977C7F1CA9354100915A1A /* 个人中心 */,
 			);
 			path = "主页";
+			sourceTree = "<group>";
+		};
+		92977C7F1CA9354100915A1A /* 个人中心 */ = {
+			isa = PBXGroup;
+			children = (
+				92977C741CA92C2100915A1A /* PersonViewController.h */,
+				92977C751CA92C2100915A1A /* PersonViewController.m */,
+				92977C821CA9367500915A1A /* CollectViewController.h */,
+				92977C831CA9367500915A1A /* CollectViewController.m */,
+				92977C851CA9368F00915A1A /* PublishViewController.h */,
+				92977C861CA9368F00915A1A /* PublishViewController.m */,
+				92977C881CA936A500915A1A /* SupportViewController.h */,
+				92977C891CA936A500915A1A /* SupportViewController.m */,
+			);
+			path = "个人中心";
+			sourceTree = "<group>";
+		};
+		92977C801CA9358A00915A1A /* 广场 */ = {
+			isa = PBXGroup;
+			children = (
+				92977C6E1CA9231800915A1A /* SquareViewController.h */,
+				92977C6F1CA9231800915A1A /* SquareViewController.m */,
+			);
+			path = "广场";
+			sourceTree = "<group>";
+		};
+		92977C811CA9358A00915A1A /* 主页2 */ = {
+			isa = PBXGroup;
+			children = (
+				924B29CC1CA51F4D00FA5564 /* HomeViewController.h */,
+				924B29CD1CA51F4D00FA5564 /* HomeViewController.m */,
+				92977C771CA92E0600915A1A /* HomePageViewController.h */,
+				92977C781CA92E0600915A1A /* HomePageViewController.m */,
+			);
+			path = "主页2";
 			sourceTree = "<group>";
 		};
 		92F460601C9AA329002CA9E7 = {
@@ -418,10 +472,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				92F460741C9AA329002CA9E7 /* ViewController.m in Sources */,
+				92977C701CA9231800915A1A /* SquareViewController.m in Sources */,
+				92977C791CA92E0600915A1A /* HomePageViewController.m in Sources */,
 				9212E3F71C9BDC8400EBE3A0 /* RetrievePasswordViewController.m in Sources */,
+				92977C8A1CA936A500915A1A /* SupportViewController.m in Sources */,
 				92F460711C9AA329002CA9E7 /* AppDelegate.m in Sources */,
 				92F4606E1C9AA329002CA9E7 /* main.m in Sources */,
+				92977C761CA92C2100915A1A /* PersonViewController.m in Sources */,
 				92F460A51C9AC9AC002CA9E7 /* RegisterViewController.m in Sources */,
+				92977C871CA9368F00915A1A /* PublishViewController.m in Sources */,
+				92977C841CA9367500915A1A /* CollectViewController.m in Sources */,
 				924B29CE1CA51F4D00FA5564 /* HomeViewController.m in Sources */,
 				92F460B21C9AE59A002CA9E7 /* UserInterfaceViewController.m in Sources */,
 			);

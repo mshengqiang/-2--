@@ -61,6 +61,8 @@
             [self presentViewController:alertcontroller animated:YES completion:nil];
             [self performSelector:@selector(dissmissAlertController:) withObject:alertcontroller afterDelay:1.0];
             [self performSelector:@selector(persentHomeview) withObject:alertcontroller afterDelay:1.0];
+            
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isAutoLogin"];
 
         }
         if (error) {

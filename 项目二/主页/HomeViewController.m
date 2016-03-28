@@ -7,6 +7,9 @@
 //
 
 #import "HomeViewController.h"
+#import "HomePageViewController.h"
+#import "PersonViewController.h"
+#import "SquareViewController.h"
 
 @interface HomeViewController ()
 
@@ -18,22 +21,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    
+    UINavigationController * homeoageView = [[UINavigationController alloc]initWithRootViewController:[[HomePageViewController alloc]init]];
+    
+    UINavigationController * personView = [[UINavigationController alloc]initWithRootViewController:[[PersonViewController alloc]init]];
+    UINavigationController * squareView = [[UINavigationController alloc]initWithRootViewController:[[SquareViewController alloc]init]];
+    
+
+    self.viewControllers = @[homeoageView,squareView,personView];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

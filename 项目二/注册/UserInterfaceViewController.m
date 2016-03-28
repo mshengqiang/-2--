@@ -16,6 +16,7 @@
 @property (nonatomic,retain)UIButton * finishButton;
 @property (nonatomic,retain)UIImage * image;
 @property (nonatomic,retain)NSString * imageName;
+@property (nonatomic,retain)NSString * urlString;
 @end
 
 @implementation UserInterfaceViewController
@@ -96,33 +97,38 @@
 //完成按钮
 - (void)finishButton_action:(UIButton *)sender
 {
+    
     //保存昵称
     AVUser * currentUser = [AVUser currentUser];
+    [currentUser setObject:self.urlString forKey:@"URL"];
     [currentUser setObject:self.nickNameText.text forKey:@"Nickname"];
-    [currentUser save];
+    
     
     //保存头像
     NSData * imagedata = UIImagePNGRepresentation(self.image);
     AVFile * file = [AVFile fileWithName:@"image" data:imagedata];
-    [currentUser setObject:file forKey:@"touxinag"];
-    [currentUser save];
-    
     
     [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
+            
+            self.urlString = file.url;
+            AVUser * currentUser = [AVUser currentUser];
+            [currentUser setObject:self.urlString forKey:@"URL"];
+            [currentUser save];
+            
             UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存成功" preferredStyle:UIAlertControllerStyleAlert];
             
             [self presentViewController:alert animated:YES completion:nil];
             [self performSelector:@selector(dissmissAlertController:) withObject:alert afterDelay:1.0];
-            [self performSelector:@selector(personViewController) withObject:alert afterDelay:1.0];
+//            [self performSelector:@selector(personViewController) withObject:alert afterDelay:1.0];
         }
         if (error) {
             NSLog(@"%@",error);
         }
     }];
-    
-    
 
+
+    
     
     
 }
