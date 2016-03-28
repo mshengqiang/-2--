@@ -13,8 +13,7 @@
 
 @property (nonatomic,retain)UITextField * phoneText;
 @property (nonatomic,retain)UITextField * passwordText;
-@property (nonatomic,retain)UITextField * codeText;
-@property (nonatomic,retain)UIButton * getCodeButton;
+@property (nonatomic,retain)UITextField * emailText;
 @property (nonatomic,retain)UIButton * nextButton;
 @end
 
@@ -26,8 +25,7 @@
     [self initUserInterface];
     [self.view addSubview:self.phoneText];
     [self.view addSubview:self.passwordText];
-    [self.view addSubview:self.codeText];
-    [self.view addSubview:self.getCodeButton];
+    [self.view addSubview:self.emailText];
     [self.view addSubview:self.nextButton];
 }
 
@@ -71,17 +69,16 @@
     
     
     UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(30, 120, 100, 50)];
-    label.text = @"手机号:";
+    label.text = @"账号:";
     label.tintColor = [UIColor blackColor];
     [self.view addSubview:label];
     
     UILabel * label1 = [[UILabel alloc]initWithFrame:CGRectMake(30, 170, 100, 50)];
-    label1.text = @"验证码:";
+    label1.text = @"邮箱:";
     label1.tintColor = [UIColor blackColor];
     [self.view addSubview:label1];
     
-    UILabel * label2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 80, 60)];
-    label2.center = CGPointMake(80, 280);
+    UILabel * label2 = [[UILabel alloc]initWithFrame:CGRectMake(30, 250, 80, 60)];
     label2.text = @"密码:";
     label2.tintColor = [UIColor blackColor];
     [self.view addSubview:label2];
@@ -99,82 +96,39 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)getCodeButton_action:(UIButton *)sender
-{
-    [AVOSCloud requestSmsCodeWithPhoneNumber:self.phoneText.text callback:^(BOOL succeeded, NSError *error) {
-        
-        if (succeeded) {
-            UIAlertController * alercomtrollrer = [UIAlertController alertControllerWithTitle:@"提示" message:@"获取验证码成功，十分钟内有效" preferredStyle:UIAlertControllerStyleAlert];
-            [self presentViewController:alercomtrollrer animated:YES completion:nil];
-            [self performSelector:@selector(dissmissAlertController:) withObject:alercomtrollrer afterDelay:1.0];
-        }
-        if (error) {
-//            NSLog(@"%@",error);
-            UIAlertController * alercomtrollrer = [UIAlertController alertControllerWithTitle:@"提示" message:@"手机号或验证码有错误" preferredStyle:UIAlertControllerStyleAlert];
-            [self presentViewController:alercomtrollrer animated:YES completion:nil];
-            
-            [alercomtrollrer addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-            }]];
-            
-            
-        }
-        
-    }];
-}
-
 - (void)nextButton_action:(UIButton *)sender
 {
-    [self pushImportView];
-    
-    //判断手机号
-    NSString * phoneString = self.phoneText.text;
-    if (phoneString.length != 11) {
-        UIAlertController * alercomtrollrer = [UIAlertController alertControllerWithTitle:@"提示" message:@"手机号输入错误" preferredStyle:UIAlertControllerStyleAlert];
-        [self presentViewController:alercomtrollrer animated:YES completion:nil];
-        [self performSelector:@selector(dissmissAlertController:) withObject:alercomtrollrer afterDelay:1.0];
-        return;
-
-    }
-    //判断验证码
-    NSString * codeString = self.codeText.text;
-    if (codeString.length != 6) {
-        UIAlertController * alercomtrollrer = [UIAlertController alertControllerWithTitle:@"提示" message:@"验证码输入错误" preferredStyle:UIAlertControllerStyleAlert];
-        [self presentViewController:alercomtrollrer animated:YES completion:nil];
-        [self performSelector:@selector(dissmissAlertController:) withObject:alercomtrollrer afterDelay:1.0];
-        return;
-    }
-    
-    //验证短信
-    [AVUser verifyMobilePhone:codeString withBlock:^(BOOL succeeded, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error.localizedDescription);
-        }
-        
-    }];
-    
-    
     //注册
     AVUser * user =[AVUser user];
-    user.mobilePhoneNumber = self.phoneText.text;
+    user.username = self.phoneText.text;
     user.password = self.passwordText.text;
+    user.email = self.emailText.text;
+    
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             UIAlertController * alercomtrollrer = [UIAlertController alertControllerWithTitle:@"提示" message:@"注册成功" preferredStyle:UIAlertControllerStyleAlert];
             [self presentViewController:alercomtrollrer animated:YES completion:nil];
             [self performSelector:@selector(dissmissAlertController:) withObject:alercomtrollrer afterDelay:1.0];
-//            [self pushImportView];
+            [self performSelector:@selector(pushImportView) withObject:nil afterDelay:1.0];
         }
         if (error) {
-            NSLog(@"%@",error.localizedDescription);
-            UIAlertController * alercomtroller = [UIAlertController alertControllerWithTitle:@"提示" message:@"账号被注册" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController * alercomtroller = [UIAlertController alertControllerWithTitle:@"提示" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
             [self presentViewController:alercomtroller animated:YES completion:nil];
             [alercomtroller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
                 
             }]];
            
+        }
+        if (self.emailText.text == nil || self.passwordText.text == nil) {
+            UIAlertController * alercomtroller = [UIAlertController alertControllerWithTitle:@"提示" message:@"邮箱或密码不能为空" preferredStyle:UIAlertControllerStyleAlert];
+            [self presentViewController:alercomtroller animated:YES completion:nil];
+            [alercomtroller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                
+            }]];
+
         }
     }];
     
@@ -205,7 +159,7 @@
         _phoneText = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 200, 60)];
         _phoneText.center = CGPointMake(self.view.center.x, 145);
         _phoneText.borderStyle = UITextBorderStyleNone;
-        _phoneText.placeholder  = @"请输入11位手机号";
+        _phoneText.placeholder  = @"请输入账号";
     }
     return _phoneText;
 }
@@ -223,33 +177,16 @@
 }
 
 
-
-
-- (UITextField *)codeText
+- (UITextField *)emailText
 {
-    if (!_codeText) {
-        _codeText = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
-        _codeText.center = CGPointMake(self.view.center.x, 195);
-        _codeText.borderStyle  = UITextBorderStyleNone;
-        _codeText.placeholder = @"请输入验证码";
+    if (!_emailText) {
+        _emailText = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+        _emailText.center = CGPointMake(self.view.center.x, 195);
+        _emailText.borderStyle  = UITextBorderStyleNone;
+        _emailText.placeholder = @"请输入邮箱";
     }
-    return _codeText;
+    return _emailText;
 }
-
-- (UIButton *)getCodeButton
-{
-    if (!_getCodeButton) {
-        _getCodeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _getCodeButton.frame = CGRectMake(0, 0, 120, 60);
-        _getCodeButton.center = CGPointMake(330, 195);
-        [_getCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-        [_getCodeButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-        [_getCodeButton addTarget:self action:@selector(getCodeButton_action:) forControlEvents:UIControlEventTouchUpInside];
-        
-    }
-    return _getCodeButton;
-}
-
 - (UIButton *)nextButton
 {
     if (!_nextButton) {

@@ -8,12 +8,14 @@
 
 #import "UserInterfaceViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "ViewController.h"
 @interface UserInterfaceViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (nonatomic,retain)UIButton *  headButton;
 @property (nonatomic,retain)UITextField * nickNameText;
 @property (nonatomic,retain)UIButton * finishButton;
 @property (nonatomic,retain)UIImage * image;
+@property (nonatomic,retain)NSString * imageName;
 @end
 
 @implementation UserInterfaceViewController
@@ -94,26 +96,33 @@
 //完成按钮
 - (void)finishButton_action:(UIButton *)sender
 {
-    //保存头像
+    //保存昵称
     AVUser * currentUser = [AVUser currentUser];
-    [currentUser setObject:self.image forKey:@"touxiang"];
     [currentUser setObject:self.nickNameText.text forKey:@"Nickname"];
-    if ([currentUser save]) {
-        
-        UIAlertController * alercomtrollrer = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存成功" preferredStyle:UIAlertControllerStyleAlert];
-        [self presentViewController:alercomtrollrer animated:YES completion:nil];
-        [self performSelector:@selector(dissmissAlertController:) withObject:alercomtrollrer afterDelay:1.0];
-    }else{
-        
-        UIAlertController * alercomtrollrer = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存失败" preferredStyle:UIAlertControllerStyleAlert];
-        [self presentViewController:alercomtrollrer animated:YES completion:nil];
-        [alercomtrollrer addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [currentUser save];
+    
+    //保存头像
+    NSData * imagedata = UIImagePNGRepresentation(self.image);
+    AVFile * file = [AVFile fileWithName:@"image" data:imagedata];
+    [currentUser setObject:file forKey:@"touxinag"];
+    [currentUser save];
+    
+    
+    [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存成功" preferredStyle:UIAlertControllerStyleAlert];
             
-        }]];
+            [self presentViewController:alert animated:YES completion:nil];
+            [self performSelector:@selector(dissmissAlertController:) withObject:alert afterDelay:1.0];
+            [self performSelector:@selector(personViewController) withObject:alert afterDelay:1.0];
+        }
+        if (error) {
+            NSLog(@"%@",error);
+        }
+    }];
+    
+    
 
-    
-    }
-    
     
     
 }
@@ -159,6 +168,8 @@
     
     //保存头像
     self.image = info[UIImagePickerControllerEditedImage];
+    
+    
 
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -169,6 +180,14 @@
 {
     [alercomtrollrer dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)personViewController
+{
+    UIViewController * viewcontroller = [[UIViewController alloc]init];
+    
+    [self presentViewController:viewcontroller animated:YES completion:nil];
+}
+
 
 
 #pragma mark -- getter

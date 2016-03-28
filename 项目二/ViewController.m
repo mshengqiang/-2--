@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "RegisterViewController.h"
 #import "RetrievePasswordViewController.h"
+#import "HomeViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
 @interface ViewController ()
 
@@ -54,29 +55,25 @@
 
 - (void)loginButton_action:(UIButton *)sender
 {
-    [AVUser logInWithMobilePhoneNumberInBackground:self.userNameText.text password:self.passwordText.text block:^(AVUser *user, NSError *error) {
+    [AVUser logInWithUsernameInBackground:self.userNameText.text password:self.passwordText.text block:^(AVUser *user, NSError *error) {
         if (user != nil) {
-            UIAlertController * alertcontroller = [UIAlertController alertControllerWithTitle:@"提示" message:@"登陆成功" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController * alertcontroller = [UIAlertController alertControllerWithTitle:@"提示" message:@"登陆成功"preferredStyle:UIAlertControllerStyleAlert];
             [self presentViewController:alertcontroller animated:YES completion:nil];
             [self performSelector:@selector(dissmissAlertController:) withObject:alertcontroller afterDelay:1.0];
-        }else{
-            UIAlertController * alertcontroller = [UIAlertController alertControllerWithTitle:@"提示" message:@"请输入正确的账号或密码" preferredStyle:UIAlertControllerStyleAlert];
+            [self performSelector:@selector(persentHomeview) withObject:alertcontroller afterDelay:1.0];
+
+        }
+        if (error) {
+            UIAlertController * alertcontroller = [UIAlertController alertControllerWithTitle:@"提示" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
             [self presentViewController:alertcontroller animated:YES completion:nil];
             [alertcontroller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
+            
             }]];
 
         }
     }];
 
-
 }
-
-
-
-
-
-
 
 
 - (void)registerButton_action:(UIButton *)sender
@@ -91,6 +88,17 @@
     
     [self.navigationController pushViewController:retrieveView animated:YES];
 }
+
+#pragma mark -- 方法
+
+- (void)persentHomeview
+{
+    HomeViewController * homeview = [[HomeViewController alloc]init];
+    
+    [self presentViewController:homeview animated:YES completion:nil];
+}
+
+
 
 -(void)dissmissAlertController:(UIAlertController *)alercomtrollrer
 {
