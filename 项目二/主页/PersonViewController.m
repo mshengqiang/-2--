@@ -12,6 +12,7 @@
 #import "supportViewController.h"
 #import "ViewController.h"
 #import <AVOSCloud.h>
+#import "UIImageView+WebCache.h"
 @interface PersonViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 
@@ -82,9 +83,7 @@
 
     NSString * imageURL = currentUSser[@"URL"];
     NSURL * url = [NSURL URLWithString:imageURL];
-    NSData * data = [NSData dataWithContentsOfURL:url];
-    self.headImageView.image = [UIImage imageWithData:data];
-
+    [self.headImageView sd_setImageWithURL:url];
 
    
     
@@ -165,10 +164,12 @@
 - (UIImageView *)headImageView
 {
     if (!_headImageView) {
-        _headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+        _headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 120, 120)];
         _headImageView.center = CGPointMake(self.view.center.x, 140);
-        _headImageView.layer.cornerRadius = 50;
+        _headImageView.layer.cornerRadius = 60;
         _headImageView.backgroundColor = [UIColor orangeColor];
+        _headImageView.layer.masksToBounds = YES;
+
         
         
     }
@@ -180,8 +181,9 @@
 {
     if (!_nicknameLabel) {
         _nicknameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
-        _nicknameLabel.center = CGPointMake(self.view.center.x, 220);
+        _nicknameLabel.center = CGPointMake(self.view.center.x, 240);
         _nicknameLabel.text = @" ";
+        _nicknameLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _nicknameLabel;
 }

@@ -45,12 +45,14 @@
     [button addTarget:self action:@selector(button_action:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
+    
     UILabel * titleLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 130, 50)];
     titleLable.center = CGPointMake(view.center.x, 50);
     titleLable.text = @"注册(2/2)";
     titleLable.font = [UIFont systemFontOfSize:24];
     titleLable.tintColor = [UIColor blackColor];
     [self.view addSubview:titleLable];
+    
     
     UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 110, 40)];
     label.center = CGPointMake(self.view.center.x, 230);
@@ -105,7 +107,7 @@
     
     
     //保存头像
-    NSData * imagedata = UIImagePNGRepresentation(self.image);
+    NSData * imagedata = UIImageJPEGRepresentation(self.image, 0.6);
     AVFile * file = [AVFile fileWithName:@"image" data:imagedata];
     
     [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -116,21 +118,13 @@
             [currentUser setObject:self.urlString forKey:@"URL"];
             [currentUser save];
             
-            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存成功" preferredStyle:UIAlertControllerStyleAlert];
-            
-            [self presentViewController:alert animated:YES completion:nil];
-            [self performSelector:@selector(dissmissAlertController:) withObject:alert afterDelay:1.0];
-//            [self performSelector:@selector(personViewController) withObject:alert afterDelay:1.0];
+            [self finishSuccess];
         }
         if (error) {
-            NSLog(@"%@",error);
+            [self finishFailure];
         }
     }];
 
-
-    
-    
-    
 }
 
 
@@ -180,20 +174,44 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)finishSuccess
+{
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存成功" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    [self performSelector:@selector(dissmissAlertController:) withObject:alert afterDelay:1.0];
+    [self performSelector:@selector(personViewController) withObject:alert afterDelay:1.0];
+}
+
+- (void)finishFailure
+{
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存失败，请重新输入" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    [self performSelector:@selector(dissmissAlertController:) withObject:alert afterDelay:1.0];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        
+    }]];
+
+
+}
+
+
+
+
+- (void)personViewController
+{
+    ViewController * viewcontroller = [[ViewController alloc]init];
+    
+    [self presentViewController:viewcontroller animated:YES completion:nil];
+}
 
 //弹出框消失
 -(void)dissmissAlertController:(UIAlertController *)alercomtrollrer
 {
     [alercomtrollrer dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (void)personViewController
-{
-    UIViewController * viewcontroller = [[UIViewController alloc]init];
-    
-    [self presentViewController:viewcontroller animated:YES completion:nil];
-}
-
 
 
 #pragma mark -- getter

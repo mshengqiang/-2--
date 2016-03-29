@@ -56,6 +56,7 @@
     view1.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:view1];
     
+    
     UIView * view2 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 400, 2)];
     view2.center = view1.center;
     view2.backgroundColor = [UIColor lightGrayColor];
@@ -87,15 +88,14 @@
 }
 
 
-
-
 #pragma mark -- 点击事件
-
+//返回按钮
 - (void)gobutton_action:(UIButton *)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+//下一步
 - (void)nextButton_action:(UIButton *)sender
 {
     //注册
@@ -104,52 +104,51 @@
     user.password = self.passwordText.text;
     user.email = self.emailText.text;
     
-    
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            UIAlertController * alercomtrollrer = [UIAlertController alertControllerWithTitle:@"提示" message:@"注册成功" preferredStyle:UIAlertControllerStyleAlert];
-            [self presentViewController:alercomtrollrer animated:YES completion:nil];
-            [self performSelector:@selector(dissmissAlertController:) withObject:alercomtrollrer afterDelay:1.0];
-            [self performSelector:@selector(pushImportView) withObject:nil afterDelay:1.0];
+            [self registerSucceeded];
         }
         if (error) {
-            UIAlertController * alercomtroller = [UIAlertController alertControllerWithTitle:@"提示" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-            [self presentViewController:alercomtroller animated:YES completion:nil];
-            [alercomtroller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-                
-            }]];
-           
-        }
-        if (self.emailText.text == nil || self.passwordText.text == nil) {
-            UIAlertController * alercomtroller = [UIAlertController alertControllerWithTitle:@"提示" message:@"邮箱或密码不能为空" preferredStyle:UIAlertControllerStyleAlert];
-            [self presentViewController:alercomtroller animated:YES completion:nil];
-            [alercomtroller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-                
-            }]];
-
+            [self registerFailure];
         }
     }];
-    
-    
 }
 
 
 #pragma mark -- 方法
+//登录成功提示
+- (void)registerSucceeded
+{
+    UIAlertController * alercomtrollrer = [UIAlertController alertControllerWithTitle:@"提示" message:@"注册成功" preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alercomtrollrer animated:YES completion:nil];
+    [self performSelector:@selector(dissmissAlertController:) withObject:alercomtrollrer afterDelay:1.0];
+    [self performSelector:@selector(pushImportView) withObject:nil afterDelay:1.0];
+
+}
+
+- (void)registerFailure
+{
+    UIAlertController * alercomtroller = [UIAlertController alertControllerWithTitle:@"提示" message:@"输入的邮箱无效，请重新输入" preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alercomtroller animated:YES completion:nil];
+    [alercomtroller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        
+    }]];
+
+}
+
 //跳转下个界面
 - (void)pushImportView
 {
-    UserInterfaceViewController * userinteface = [[UserInterfaceViewController alloc]init];
-    
+    UserInterfaceViewController * userinteface =[[UserInterfaceViewController alloc]init];
     [self.navigationController pushViewController:userinteface animated:YES];
 }
 
+//弹出框消失
 -(void)dissmissAlertController:(UIAlertController *)alercomtrollrer
 {
     [alercomtrollrer dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 #pragma mark -- getter
 

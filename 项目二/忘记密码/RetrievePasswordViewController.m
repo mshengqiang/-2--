@@ -7,6 +7,7 @@
 //
 
 #import "RetrievePasswordViewController.h"
+#import "ViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
 @interface RetrievePasswordViewController ()
 
@@ -63,7 +64,6 @@
     [self.view addSubview:titleLable];
     
     
-    
     UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(30, 120, 100, 50)];
     label.text = @"账号:";
     label.tintColor = [UIColor blackColor];
@@ -78,37 +78,52 @@
 }
 
 #pragma mark -- 点击事件
-
+//返回按钮
 - (void)button_action:(UIButton *)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
+//修改按钮
 - (void)nextbutton_action:(UIButton *)sender
 {
     [AVUser requestPasswordResetForEmailInBackground:self.codetext.text block:^(BOOL succeeded, NSError *error) {
         
         if (succeeded) {
-            UIAlertController * alercomtrollrer = [UIAlertController alertControllerWithTitle:@"提示" message:@"邮件已发送,请查看邮箱" preferredStyle:UIAlertControllerStyleAlert];
-            [self presentViewController:alercomtrollrer animated:YES completion:nil];
-            [self performSelector:@selector(dissmissAlertController:) withObject:alercomtrollrer afterDelay:1.0];
-        }
+            [self changeSuccess];
+                    }
         if (error) {
-            UIAlertController * alercomtrollrer = [UIAlertController alertControllerWithTitle:@"提示" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-            [self presentViewController:alercomtrollrer animated:YES completion:nil];
-            [alercomtrollrer addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-            }]];
+            [self changgeFailure];
         }
-        
     }];
-
-        
+   
 }
 
 #pragma mark -- 方法
+
+- (void)changeSuccess
+{
+    UIAlertController * alercomtrollrer = [UIAlertController alertControllerWithTitle:@"提示" message:@"邮件已发送,请查看邮箱" preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alercomtrollrer animated:YES completion:nil];
+    [self performSelector:@selector(dissmissAlertController:) withObject:alercomtrollrer afterDelay:1.0];
+    [self performSelector:@selector(personView) withObject:alercomtrollrer afterDelay:1.0];
+}
+
+- (void)changgeFailure
+{
+    UIAlertController * alercomtrollrer = [UIAlertController alertControllerWithTitle:@"提示" message:@"请输入正确的邮箱账号或邮箱" preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alercomtrollrer animated:YES completion:nil];
+    [alercomtrollrer addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+}
+
+- (void)personView
+{
+    ViewController * viewcontroller = [[ViewController alloc]init];
+    
+    [self presentViewController:viewcontroller animated:YES completion:nil];
+}
 
 -(void)dissmissAlertController:(UIAlertController *)alercomtrollrer
 {
@@ -156,8 +171,5 @@
     }
     return _nextbutton;
 }
-
-
-
 
 @end

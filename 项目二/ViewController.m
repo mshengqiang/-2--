@@ -32,13 +32,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self initUserInterface];
+    [self voluntarilyLogin];
     [self.view addSubview:self.userNameText];
     [self.view addSubview:self.passwordText];
     [self.view addSubview:self.loginButton];
     [self.view addSubview:self.registerButton];
     [self.view addSubview:self.forgetPasswordButton];
     
+    
 }
+
 
 - (void)initUserInterface
 {
@@ -57,21 +60,10 @@
 {
     [AVUser logInWithUsernameInBackground:self.userNameText.text password:self.passwordText.text block:^(AVUser *user, NSError *error) {
         if (user != nil) {
-            UIAlertController * alertcontroller = [UIAlertController alertControllerWithTitle:@"提示" message:@"登陆成功"preferredStyle:UIAlertControllerStyleAlert];
-            [self presentViewController:alertcontroller animated:YES completion:nil];
-            [self performSelector:@selector(dissmissAlertController:) withObject:alertcontroller afterDelay:1.0];
-            [self performSelector:@selector(persentHomeview) withObject:alertcontroller afterDelay:1.0];
-            
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isAutoLogin"];
-
+            [self loginSuccess];
         }
         if (error) {
-            UIAlertController * alertcontroller = [UIAlertController alertControllerWithTitle:@"提示" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-            [self presentViewController:alertcontroller animated:YES completion:nil];
-            [alertcontroller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
-            }]];
-
+            [self loginFailure];
         }
     }];
 
@@ -93,6 +85,41 @@
 
 #pragma mark -- 方法
 
+- (void)loginSuccess
+{
+    UIAlertController * alertcontroller = [UIAlertController alertControllerWithTitle:@"提示" message:@"登陆成功"preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alertcontroller animated:YES completion:nil];
+    [self performSelector:@selector(dissmissAlertController:) withObject:alertcontroller afterDelay:1.0];
+    [self performSelector:@selector(persentHomeview) withObject:alertcontroller afterDelay:1.0];
+ 
+}
+
+- (void)loginFailure
+{
+    UIAlertController * alertcontroller = [UIAlertController alertControllerWithTitle:@"提示" message:@"请输入正确的账号或密码" preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alertcontroller animated:YES completion:nil];
+    [alertcontroller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+
+}
+
+- (void)voluntarilyLogin
+{
+    AVUser *currentUser = [AVUser currentUser];
+    if (currentUser != nil) {
+        HomeViewController * homeView  = [[HomeViewController alloc]init];
+        [self presentViewController:homeView animated:YES completion:nil];
+    } else {
+
+    }
+}
+
+
+
+
+//跳转
 - (void)persentHomeview
 {
     HomeViewController * homeview = [[HomeViewController alloc]init];
@@ -100,8 +127,7 @@
     [self presentViewController:homeview animated:YES completion:nil];
 }
 
-
-
+//弹出框消失
 -(void)dissmissAlertController:(UIAlertController *)alercomtrollrer
 {
     [alercomtrollrer dismissViewControllerAnimated:YES completion:nil];
@@ -114,6 +140,7 @@
     if (!_userNameText) {
         _userNameText = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 250, 40)];
         _userNameText.center = CGPointMake(self.view.center.x, 300);
+        _userNameText.text = @"4";
         _userNameText.borderStyle = UITextBorderStyleBezel;
         _userNameText.placeholder = @"请输入账号或手机号";
         _userNameText.clearButtonMode = UITextFieldViewModeAlways;
@@ -128,6 +155,7 @@
     if (!_passwordText) {
         _passwordText = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 250, 40)];
         _passwordText.center = CGPointMake(self.view.center.x, 350);
+        _passwordText.text = @"4";
         _passwordText.borderStyle = UITextBorderStyleBezel;
         _passwordText.placeholder = @"请输入密码";
         _passwordText.clearButtonMode = UITextFieldViewModeAlways;
