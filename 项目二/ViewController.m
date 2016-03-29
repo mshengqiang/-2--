@@ -116,9 +116,6 @@
     }
 }
 
-
-
-
 //跳转
 - (void)persentHomeview
 {

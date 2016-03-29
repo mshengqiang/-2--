@@ -12,7 +12,6 @@
 		924B29CE1CA51F4D00FA5564 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924B29CD1CA51F4D00FA5564 /* HomeViewController.m */; };
 		92977C701CA9231800915A1A /* SquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92977C6F1CA9231800915A1A /* SquareViewController.m */; };
 		92977C761CA92C2100915A1A /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92977C751CA92C2100915A1A /* PersonViewController.m */; };
-		92977C791CA92E0600915A1A /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92977C781CA92E0600915A1A /* HomePageViewController.m */; };
 		92977C841CA9367500915A1A /* CollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92977C831CA9367500915A1A /* CollectViewController.m */; };
 		92977C871CA9368F00915A1A /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92977C861CA9368F00915A1A /* PublishViewController.m */; };
 		92977C8A1CA936A500915A1A /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92977C891CA936A500915A1A /* SupportViewController.m */; };
@@ -32,6 +31,7 @@
 		92AEF8CA1CAA075900CAF2BA /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AEF8B81CAA075900CAF2BA /* UIImageView+HighlightedWebCache.m */; };
 		92AEF8CB1CAA075900CAF2BA /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AEF8BA1CAA075900CAF2BA /* UIImageView+WebCache.m */; };
 		92AEF8CC1CAA075900CAF2BA /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AEF8BC1CAA075900CAF2BA /* UIView+WebCacheOperation.m */; };
+		92AEF8D01CAA331E00CAF2BA /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AEF8CF1CAA331E00CAF2BA /* HomePageViewController.m */; };
 		92F4606E1C9AA329002CA9E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F4606D1C9AA329002CA9E7 /* main.m */; };
 		92F460711C9AA329002CA9E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F460701C9AA329002CA9E7 /* AppDelegate.m */; };
 		92F460741C9AA329002CA9E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F460731C9AA329002CA9E7 /* ViewController.m */; };
@@ -74,8 +74,6 @@
 		92977C6F1CA9231800915A1A /* SquareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SquareViewController.m; path = ../SquareViewController.m; sourceTree = "<group>"; };
 		92977C741CA92C2100915A1A /* PersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonViewController.h; path = ../PersonViewController.h; sourceTree = "<group>"; };
 		92977C751CA92C2100915A1A /* PersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonViewController.m; path = ../PersonViewController.m; sourceTree = "<group>"; };
-		92977C771CA92E0600915A1A /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageViewController.h; path = ../HomePageViewController.h; sourceTree = "<group>"; };
-		92977C781CA92E0600915A1A /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageViewController.m; path = ../HomePageViewController.m; sourceTree = "<group>"; };
 		92977C821CA9367500915A1A /* CollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectViewController.h; sourceTree = "<group>"; };
 		92977C831CA9367500915A1A /* CollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectViewController.m; sourceTree = "<group>"; };
 		92977C851CA9368F00915A1A /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
@@ -115,6 +113,8 @@
 		92AEF8BA1CAA075900CAF2BA /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		92AEF8BB1CAA075900CAF2BA /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		92AEF8BC1CAA075900CAF2BA /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		92AEF8CE1CAA331800CAF2BA /* HomePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
+		92AEF8CF1CAA331E00CAF2BA /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		92F460691C9AA329002CA9E7 /* 项目二.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "项目二.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F4606D1C9AA329002CA9E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		92F4606F1C9AA329002CA9E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -224,8 +224,8 @@
 			children = (
 				924B29CC1CA51F4D00FA5564 /* HomeViewController.h */,
 				924B29CD1CA51F4D00FA5564 /* HomeViewController.m */,
-				92977C771CA92E0600915A1A /* HomePageViewController.h */,
-				92977C781CA92E0600915A1A /* HomePageViewController.m */,
+				92AEF8CE1CAA331800CAF2BA /* HomePageViewController.h */,
+				92AEF8CF1CAA331E00CAF2BA /* HomePageViewController.m */,
 			);
 			path = "主页2";
 			sourceTree = "<group>";
@@ -573,8 +573,8 @@
 				92F460741C9AA329002CA9E7 /* ViewController.m in Sources */,
 				92AEF8C91CAA075900CAF2BA /* UIImage+WebP.m in Sources */,
 				92977C701CA9231800915A1A /* SquareViewController.m in Sources */,
-				92977C791CA92E0600915A1A /* HomePageViewController.m in Sources */,
 				9212E3F71C9BDC8400EBE3A0 /* RetrievePasswordViewController.m in Sources */,
+				92AEF8D01CAA331E00CAF2BA /* HomePageViewController.m in Sources */,
 				92977C8A1CA936A500915A1A /* SupportViewController.m in Sources */,
 				92F460711C9AA329002CA9E7 /* AppDelegate.m in Sources */,
 				92AEF8C31CAA075900CAF2BA /* SDWebImageDownloaderOperation.m in Sources */,

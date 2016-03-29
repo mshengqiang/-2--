@@ -27,8 +27,9 @@
     UINavigationController * personView = [[UINavigationController alloc]initWithRootViewController:[[PersonViewController alloc]init]];
     UINavigationController * squareView = [[UINavigationController alloc]initWithRootViewController:[[SquareViewController alloc]init]];
     
-
     self.viewControllers = @[homeoageView,squareView,personView];
+    
+    
     
 }
 
