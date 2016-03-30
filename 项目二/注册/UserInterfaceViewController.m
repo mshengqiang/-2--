@@ -105,8 +105,9 @@
     [currentUser setObject:self.urlString forKey:@"URL"];
     [currentUser setObject:self.nickNameText.text forKey:@"Nickname"];
     
+    [[NSUserDefaults standardUserDefaults] setObject:self.nickNameText forKey:@"userName"];
     
-    //保存头像
+    //保存头像 
     NSData * imagedata = UIImageJPEGRepresentation(self.image, 0.6);
     AVFile * file = [AVFile fileWithName:@"image" data:imagedata];
     

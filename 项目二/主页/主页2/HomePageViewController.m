@@ -42,8 +42,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"主页";
     
-    NSArray * nameArray = @[@"歌词",@"情感",@"励志",@"笑话",@"段子",@"语录",@"正能量"];
-    for (int i = 0 ; i < 7; i ++) {
+    NSArray * nameArray = @[@"歌词",@"情感",@"励志",@"笑话",@"语录",@"正能量"];
+    for (int i = 0 ; i < 6; i ++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(0, 0, 70, 70);
         button.center = CGPointMake(60 + i * 80, 30);
