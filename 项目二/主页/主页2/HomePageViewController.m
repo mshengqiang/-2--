@@ -8,12 +8,20 @@
 
 #import "HomePageViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "HomeView.h"
+
+
 @interface HomePageViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,retain)UIScrollView * scrollview;
 @property (nonatomic,retain)UITableView * tableview;
 @property (nonatomic,retain)NSArray * lyricsArray;
 
+@property (nonatomic,retain)HomeView * home;
+@property (nonatomic, retain)NSMutableArray * cards;
+@property (nonatomic, assign)NSInteger currentIndex;
+@property (nonatomic, retain)UISwipeGestureRecognizer * leftSwipeGesture;
+@property (nonatomic, retain)UISwipeGestureRecognizer * rightSwipeGesture;
 
 @end
 
@@ -33,8 +41,11 @@
     // Do any additional setup after loading the view.
     [self initUserInterface];
     [self.view addSubview:self.scrollview];
-    [self.view addSubview:self.tableview];
+//    [self.view addSubview:self.tableview];
     [self initDataSource];
+    [self.view addGestureRecognizer:self.leftSwipeGesture];
+    [self.view addGestureRecognizer:self.rightSwipeGesture];
+    [self layoutCardWith:UISwipeGestureRecognizerDirectionUp];
 }
 
 - (void)initUserInterface
@@ -42,7 +53,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"主页";
     
-    NSArray * nameArray = @[@"歌词",@"情感",@"励志",@"笑话",@"语录",@"正能量"];
+    NSArray * nameArray = @[@"故事",@"情感",@"正能量",@"笑话",@"语录",@"其他"];
     for (int i = 0 ; i < 6; i ++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(0, 0, 70, 70);
@@ -55,13 +66,42 @@
     }
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    for (int i = 0; i < 3; i ++) {
+        NSString * str = [NSString stringWithFormat:@"%d",i];
+        _home = [[HomeView alloc]initWithFrame:self.view.frame title:str];
+        [self.view addSubview:_home];
+        
+        [_cards addObject:_home];
+    }
+    
+   
+
+    
 }
 
 - (void)initDataSource
 {
     self.lyricsArray = @[@"1",@"2"];
 }
+-(void)action_SwipeGesture:(UISwipeGestureRecognizer *)gesture{
 
+ 
+}
+-(void)layoutCardWith:(UISwipeGestureRecognizerDirection)direction{
+    
+    [UIView animateWithDuration:1 animations:^{
+        if (direction == UISwipeGestureRecognizerDirectionLeft) {
+            
+//            _home.center = CGPointMake(-, <#CGFloat y#>)
+        }
+        else if (direction == UISwipeGestureRecognizerDirectionRight){
+            
+        }
+    } completion:^(BOOL finished) {
+        
+    }];
+  
+}
 
 
 #pragma mark -- 
@@ -149,5 +189,19 @@
     }
     return _tableview;
 }
+-(UISwipeGestureRecognizer *)leftSwipeGesture{
+    if (!_leftSwipeGesture) {
+        _leftSwipeGesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(action_SwipeGesture:)];
+        _leftSwipeGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    }
+    return _leftSwipeGesture;
+}
 
+-(UISwipeGestureRecognizer *)rightSwipeGesture{
+    if (!_rightSwipeGesture) {
+        _rightSwipeGesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(action_SwipeGesture:)];
+        _rightSwipeGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    }
+    return _rightSwipeGesture;
+}
 @end

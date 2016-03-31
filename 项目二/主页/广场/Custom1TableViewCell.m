@@ -15,6 +15,7 @@ int hang, textL, textY, pictL, pictY ,goodN, zanint = 0;
 @interface Custom1TableViewCell ()
 @property (nonatomic,strong) UIView * shadowView;
 
+@property (nonatomic, strong) UILabel * creatTime;
 @property (nonatomic, strong) UILabel * datetitle;
 @property (nonatomic, strong) UIImageView * avatar;
 @property (nonatomic, strong) UITextView * saysay;
@@ -59,6 +60,7 @@ int hang, textL, textY, pictL, pictY ,goodN, zanint = 0;
     [self.contentView.layer addSublayer:self.gradientLayer];
     [self.contentView addSubview:self.name];
     [self.contentView addSubview:self.saysay];
+    [self.contentView addSubview:self.creatTime];
     [self.contentView addSubview:self.datetitle];
     [self.contentView addSubview:self.avatar];
     [self.contentView addSubview:self.goodLike];
@@ -92,7 +94,8 @@ int hang, textL, textY, pictL, pictY ,goodN, zanint = 0;
     CGPoint point = self.name.center;
     self.name.frame = [cus customLabelTextLength:self.name.text lines:1];
     self.name.center = point;
-    self.datetitle.frame = CGRectMake(260, 5, 150, 40);
+    self.creatTime.frame = CGRectMake(180, 5, 150, 40);
+    self.datetitle.frame = CGRectMake(360, 5, 150, 40);
     self.avatar.frame = CGRectMake(10, 10, 35, 35);
     self.saysay.frame = CGRectMake(10, 50, 390, 30 * textL);//文本
     
@@ -164,6 +167,9 @@ int hang, textL, textY, pictL, pictY ,goodN, zanint = 0;
     _array = _contentDictionary[@"arr"];
     zanint = (int)_array.count;
     
+    self.name.text = _contentDictionary[@"who"];
+    self.creatTime.text = _contentDictionary[@"createdAt"];
+    
     if ([_array containsObject:_fuck]) {
         self.datetitle.text = @"1";
     }else if (![_array containsObject:_fuck]){
@@ -176,7 +182,7 @@ int hang, textL, textY, pictL, pictY ,goodN, zanint = 0;
     NSString * foots = [NSString stringWithFormat:@"%d",foot];
     self.allComments.text = foots;
     
-    self.name.text = _contentDictionary[@"who"];
+
     
     NSLog(@"1111wo jiu fuck le %d",zanint);
     _zansSum = [NSString stringWithFormat:@"%d",zanint];
@@ -226,14 +232,25 @@ int hang, textL, textY, pictL, pictY ,goodN, zanint = 0;
     }
     return _avatar;
 }
-//-(UIImageView *)picture{
-//    if (!_picture) {
-//        _picture = [[UIImageView alloc]init];
-//        _picture.backgroundColor = [UIColor cyanColor];
-//        _picture.userInteractionEnabled = YES;
-//    }
-//    return _picture;
-//}
+-(UILabel *)creatTime{
+    if (!_creatTime) {
+        _creatTime = ({
+            UILabel * label = [[UILabel alloc]init];
+            label.textColor = [UIColor blackColor];
+            label.backgroundColor = [UIColor greenColor];
+            label.textAlignment = NSTextAlignmentLeft;
+            //            label.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+            label.numberOfLines = 1;
+            label.lineBreakMode = NSLineBreakByWordWrapping;
+            label.shadowOffset = CGSizeMake(3,3);
+            label.enabled = NO;
+            label;
+            
+        });
+
+    }
+    return _creatTime;
+}
 - (UILabel *)name{
     if (!_name) {
         _name = ({

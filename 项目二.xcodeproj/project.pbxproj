@@ -76,6 +76,7 @@
 		95035CE31CABB07600E6FC4C /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95035CD91CABB07600E6FC4C /* CustomCollectionViewCell.xib */; };
 		95035CE41CABB07600E6FC4C /* DiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95035CDB1CABB07600E6FC4C /* DiaryViewController.m */; };
 		95035CE51CABB07600E6FC4C /* Instance.m in Sources */ = {isa = PBXBuildFile; fileRef = 95035CDD1CABB07600E6FC4C /* Instance.m */; };
+		9504E03C1CACC6A000E251B9 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504E03B1CACC6A000E251B9 /* HomeView.m */; };
 		950E112D1CABC53B001E8B7C /* jiaoya.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 950E112C1CABC53B001E8B7C /* jiaoya.jpg */; };
 		950E112F1CABC53F001E8B7C /* zuoji.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 950E112E1CABC53F001E8B7C /* zuoji.jpg */; };
 /* End PBXBuildFile section */
@@ -228,6 +229,8 @@
 		95035CDB1CABB07600E6FC4C /* DiaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryViewController.m; sourceTree = "<group>"; };
 		95035CDC1CABB07600E6FC4C /* Instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instance.h; sourceTree = "<group>"; };
 		95035CDD1CABB07600E6FC4C /* Instance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instance.m; sourceTree = "<group>"; };
+		9504E03A1CACC6A000E251B9 /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
+		9504E03B1CACC6A000E251B9 /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
 		950E112C1CABC53B001E8B7C /* jiaoya.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jiaoya.jpg; sourceTree = "<group>"; };
 		950E112E1CABC53F001E8B7C /* zuoji.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = zuoji.jpg; sourceTree = "<group>"; };
 		D778379231BCA3DE40D548D1 /* Pods-项目二.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-项目二.release.xcconfig"; path = "Pods/Target Support Files/Pods-项目二/Pods-项目二.release.xcconfig"; sourceTree = "<group>"; };
@@ -330,6 +333,8 @@
 				924B29CD1CA51F4D00FA5564 /* HomeViewController.m */,
 				92AEF8CE1CAA331800CAF2BA /* HomePageViewController.h */,
 				92AEF8CF1CAA331E00CAF2BA /* HomePageViewController.m */,
+				9504E03A1CACC6A000E251B9 /* HomeView.h */,
+				9504E03B1CACC6A000E251B9 /* HomeView.m */,
 			);
 			path = "主页2";
 			sourceTree = "<group>";
@@ -831,6 +836,7 @@
 				95035CA31CABAE8700E6FC4C /* MJRefreshBackNormalFooter.m in Sources */,
 				92AEF8C21CAA075900CAF2BA /* SDWebImageDownloader.m in Sources */,
 				95035C9F1CABAE8700E6FC4C /* MJRefreshAutoGifFooter.m in Sources */,
+				9504E03C1CACC6A000E251B9 /* HomeView.m in Sources */,
 				92AEF8CB1CAA075900CAF2BA /* UIImageView+WebCache.m in Sources */,
 				95035CE51CABB07600E6FC4C /* Instance.m in Sources */,
 				92AEF8CA1CAA075900CAF2BA /* UIImageView+HighlightedWebCache.m in Sources */,

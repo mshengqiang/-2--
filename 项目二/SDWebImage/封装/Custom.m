@@ -49,4 +49,13 @@
     
     return number;
 }
+-(NSString *)dateDeleteFirstZero:(NSString *)date{
+    
+    NSString * string = [date substringToIndex:1];
+    if ([string isEqualToString:@"0"]) {
+        
+        date = [date substringFromIndex:1];
+    }
+    return date;
+}
 @end

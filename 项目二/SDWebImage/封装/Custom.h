@@ -11,7 +11,7 @@
 @interface Custom : UIView
 
 
-
+-(NSString *)dateDeleteFirstZero:(NSString *)date;
 -(CGRect)customLabelTextLength:(NSString *)str lines:(int)lines;
 //-(NSString *)didSelected:(BOOL)selected LabelText:(NSString *)text;
 //-(NSString *)didSelectedBystring:(NSString *)selected LabelText:(NSString *)text;

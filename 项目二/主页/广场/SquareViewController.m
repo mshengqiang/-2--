@@ -16,6 +16,7 @@
 #import "Instance.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "UIImageView+WebCache.h"
+#import "Custom.h"
 int picL = 0;
 @interface SquareViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -25,6 +26,7 @@ int picL = 0;
 @property (nonatomic, copy) NSMutableArray * dataSource;
 @property (nonatomic, copy) NSMutableArray * dataSourceId;
 @property (nonatomic, copy) NSMutableArray * dataSourcewho;
+@property (nonatomic, copy) NSMutableArray * dataCrestedAt;
 @property (nonatomic, copy) NSMutableArray * dataSourcezanname;
 @property (nonatomic, copy) NSMutableArray * dataSourcePictures;
 @property (nonatomic, copy) NSMutableArray * dataSourceComments;
@@ -38,7 +40,8 @@ int picL = 0;
 @property int count;
 @property (nonatomic,retain)Instance * instance;
 @property (nonatomic,retain)UIImageView * imageURLArray;
-
+@property (nonatomic,retain)NSDateFormatter * formatter;
+@property (nonatomic,retain)Custom * custom;
 - (void)initUserInterface;
 - (void)initUserDataSouce;
 - (void)barButtonPressedriji:(UIBarButtonItem *)sender;
@@ -80,6 +83,9 @@ int picL = 0;
     // 马上进入刷新状态
     [self.tableView.header beginRefreshing];
     
+    _custom = [[Custom alloc]init];
+    _formatter = [[NSDateFormatter alloc]init];
+    _formatter.dateFormat = @"MM月dd日HH:mm";
 
 }
 //初始化tableView;
@@ -103,6 +109,7 @@ int picL = 0;
     _dataSource = [[NSMutableArray alloc]init];
     _dataSourceId = [[NSMutableArray alloc]init];
     _dataSourcewho = [[NSMutableArray alloc]init];
+    _dataCrestedAt = [[NSMutableArray alloc]init];
     
     _dataSourcezanname = [[NSMutableArray alloc]init];
     
@@ -123,14 +130,21 @@ int picL = 0;
             _object = objects[i];
             NSString *str = [_object objectForKey:@"chat1"];
             NSString *whoload = [_object objectForKey:@"Who"];
+            NSDate *createdDate = [_object objectForKey:@"createdAt"];
+            NSString * createdAt = [_formatter stringFromDate:createdDate];
+            createdAt = [_custom dateDeleteFirstZero:createdAt];
             NSString *idid = _object.objectId;
             NSMutableArray * arr = [_object objectForKey:@"zanname"];
             NSMutableArray * arrP = [_object objectForKey:@"pictures"];
             NSMutableArray * arrC = [_object objectForKey:@"comment"];
             NSLog(@"post = %@ %@",str,_dataSource);
            
+            if(str.length < 1){
+                str = @"";
+            }
             [_dataSource addObject:str];
             [_dataSourcewho addObject:whoload];
+            [_dataCrestedAt addObject:createdAt];
             [_dataSourceId addObject:idid];
             [_dataSourcezanname addObject:arr];
             [_dataSourcePictures addObject:arrP];
@@ -149,6 +163,7 @@ int picL = 0;
     
     _dataSource = [[NSMutableArray alloc]init];
     _dataSourcewho = [[NSMutableArray alloc]init];
+    _dataCrestedAt = [[NSMutableArray alloc]init];
 
     _dataSourcezanname = [[NSMutableArray alloc]init];
     _dataSourceId = [[NSMutableArray alloc]init];
@@ -165,6 +180,9 @@ int picL = 0;
             _object = objects[i];
             NSString * str = [_object objectForKey:@"chat1"];
             NSString * whoload = [_object objectForKey:@"Who"];
+            NSDate *createdDate = [_object objectForKey:@"createdAt"];
+            NSString * createdAt = [_formatter stringFromDate:createdDate];
+            createdAt = [_custom dateDeleteFirstZero:createdAt];
             NSMutableArray * arr = [_object objectForKey:@"zanname"];
             NSMutableArray * arrP = [_object objectForKey:@"pictures"];
             NSMutableArray * arrC = [_object objectForKey:@"comment"];
@@ -174,6 +192,7 @@ int picL = 0;
             }
             [_dataSource addObject:str];
             [_dataSourcewho addObject:whoload];
+            [_dataCrestedAt addObject:createdAt];
             [_dataSourceId addObject:_object.objectId];
             [_dataSourcezanname addObject:arr];
             [_dataSourcePictures addObject:arrP];
@@ -203,6 +222,10 @@ int picL = 0;
         NSString * idid = _dataSourceId[i];
         _dataSourceId[i] = _dataSourceId[_dataSource.count - 1 -i];
         _dataSourceId[_dataSource.count - 1 -i] = idid;
+        
+        NSString * creatAt = _dataCrestedAt[i];
+        _dataCrestedAt[i] = _dataCrestedAt[_dataSource.count - 1 - i];
+        _dataCrestedAt[_dataSource.count - 1 - i] = creatAt;
         
         NSMutableArray * arr = _dataSourcezanname[i];
         _dataSourcezanname[i] = _dataSourcezanname[_dataSource.count - 1 -i];
@@ -262,6 +285,7 @@ int picL = 0;
     
     NSDictionary * dic = @{@"title":self.dataSource[indexPath.section],
                            @"who":self.dataSourcewho[indexPath.section],
+                           @"createdAt":self.dataCrestedAt[indexPath.section],
                            @"Id":self.dataSourceId[indexPath.section],
                            @"arr":self.dataSourcezanname[indexPath.section],
                            @"arrP":self.dataSourcePictures[indexPath.section],
